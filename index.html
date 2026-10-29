@@ -25,17 +25,8 @@
     <div class="login-card">
       <div class="logo-brand">
         <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#4f8cff"/>
-              <stop offset="100%" stop-color="#6a5acd"/>
-            </linearGradient>
-          </defs>
-          <rect width="100" height="100" rx="24" fill="url(#logoGrad)"/>
-          <rect x="28" y="26" width="44" height="10" rx="2" fill="white"/>
-          <rect x="28" y="45" width="44" height="10" rx="2" fill="white"/>
-          <rect x="28" y="64" width="28" height="10" rx="2" fill="white"/>
-          <circle cx="66" cy="69" r="5" fill="#ff8a4c"/>
+          <defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4f8cff"/><stop offset="100%" stop-color="#6a5acd"/></linearGradient></defs>
+          <rect width="100" height="100" rx="24" fill="url(#logoGrad)"/><rect x="28" y="26" width="44" height="10" rx="2" fill="white"/><rect x="28" y="45" width="44" height="10" rx="2" fill="white"/><rect x="28" y="64" width="28" height="10" rx="2" fill="white"/><circle cx="66" cy="69" r="5" fill="#ff8a4c"/>
         </svg>
         <h1>مخزوني</h1>
       </div>
@@ -45,564 +36,126 @@
         <p style="margin-top:16px;color:#8895a7">جاري التحميل...</p>
       </div>
 
-      <!-- شاشة إنشاء الحساب -->
-      <div id="setupView" class="hidden">
-        <p class="login-sub">مرحباً بك! أنشئ حسابك لأول مرة</p>
-        <form id="setupForm">
-          <div class="input-group">
-            <i class="fa-solid fa-envelope"></i>
-            <input type="email" id="setupUser" placeholder="البريد الإلكتروني" required>
-          </div>
-          <div class="input-group">
-            <i class="fa-solid fa-lock"></i>
-            <input type="password" id="setupPass" placeholder="كلمة المرور (6 أحرف على الأقل)" required minlength="6">
-          </div>
-          <div class="input-group">
-            <i class="fa-solid fa-lock"></i>
-            <input type="password" id="setupPass2" placeholder="تأكيد كلمة المرور" required>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">
-            <i class="fa-solid fa-user-plus"></i> إنشاء الحساب
-          </button>
-        </form>
-        <p class="login-hint">بياناتك تُحفظ سحابياً ويمكنك الوصول إليها من أي جهاز</p>
-      </div>
-
       <!-- شاشة تسجيل الدخول -->
       <div id="loginView" class="hidden">
         <p class="login-sub">سجّل الدخول</p>
         <form id="loginForm">
-          <div class="input-group">
-            <i class="fa-solid fa-envelope"></i>
-            <input type="email" id="loginUser" placeholder="البريد الإلكتروني" required>
-          </div>
-          <div class="input-group">
-            <i class="fa-solid fa-lock"></i>
-            <input type="password" id="loginPass" placeholder="كلمة المرور" required>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">
-            <i class="fa-solid fa-right-to-bracket"></i> دخول
-          </button>
+          <div class="input-group"><i class="fa-solid fa-envelope"></i><input type="email" id="loginUser" placeholder="البريد الإلكتروني" required></div>
+          <div class="input-group"><i class="fa-solid fa-lock"></i><input type="password" id="loginPass" placeholder="كلمة المرور" required></div>
+          <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-right-to-bracket"></i> دخول</button>
         </form>
-
         <div style="margin: 15px 0; text-align: center; color: #8895a7; font-size: 0.85rem;">أو</div>
-        
-        <button type="button" id="googleSignInBtn" class="btn btn-block" style="background: #fff; color: #333; border: 2px solid #e4e9f2; font-weight: 700; margin-bottom: 10px;">
-          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width: 20px; margin-left: 8px;">
-          الدخول بحساب Google
-        </button>
-
-        <button type="button" id="phoneSignInBtn" class="btn btn-block" style="background: #fff; color: #333; border: 2px solid #e4e9f2; font-weight: 700;">
-          <i class="fa-solid fa-mobile-screen"></i> الدخول برقم الجوال
-        </button>
-
-        <p class="login-hint" style="margin-top: 15px;">
-          <a href="#" id="forgotPasswordLink" class="link-danger">نسيت كلمة المرور؟</a>
-        </p>
+        <button type="button" id="googleSignInBtn" class="btn btn-block" style="background: #fff; color: #333; border: 2px solid #e4e9f2; font-weight: 700; margin-bottom: 10px;"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width: 20px; margin-left: 8px;"> الدخول بحساب Google</button>
+        <div style="display:flex; justify-content:space-between; margin-top: 15px; font-size: 0.9rem;">
+          <a href="#" id="goToSetup" style="text-decoration:none; color:#4f8cff; font-weight:700;">إنشاء حساب جديد</a>
+          <a href="#" id="forgotPasswordLink" style="text-decoration:none; color:#e74c3c;">نسيت كلمة المرور؟</a>
+        </div>
       </div>
 
-      <!-- شاشة الدخول برقم الجوال -->
-      <div id="phoneAuthView" class="hidden">
-        <p class="login-sub">تسجيل الدخول برقم الجوال</p>
-        <div class="input-group" id="phoneInputGroup">
-          <i class="fa-solid fa-phone"></i>
-          <input type="tel" id="phoneNumber" placeholder="+966500000000" required>
+      <!-- شاشة إنشاء حساب -->
+      <div id="setupView" class="hidden">
+        <p class="login-sub">إنشاء حساب جديد</p>
+        <form id="setupForm">
+          <div class="input-group"><i class="fa-solid fa-envelope"></i><input type="email" id="setupUser" placeholder="البريد الإلكتروني" required></div>
+          <div class="input-group"><i class="fa-solid fa-lock"></i><input type="password" id="setupPass" placeholder="كلمة المرور (6 أحرف)" required minlength="6"></div>
+          <div class="input-group"><i class="fa-solid fa-lock"></i><input type="password" id="setupPass2" placeholder="تأكيد كلمة المرور" required></div>
+          <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-user-plus"></i> إنشاء الحساب</button>
+        </form>
+        <div style="margin-top: 15px; text-align: center;">
+          <a href="#" id="goToLogin" style="text-decoration:none; color:#8895a7; font-size: 0.9rem;">لديك حساب؟ سجل الدخول</a>
         </div>
-        <div class="input-group hidden" id="otpInputGroup">
-          <i class="fa-solid fa-key"></i>
-          <input type="text" id="otpCode" placeholder="أدخل رمز التحقق (OTP)" required>
+      </div>
+
+      <!-- شاشة نسيت كلمة المرور -->
+      <div id="forgotPasswordView" class="hidden">
+        <p class="login-sub">استعادة كلمة المرور</p>
+        <form id="forgotPasswordForm">
+          <div class="input-group"><i class="fa-solid fa-envelope"></i><input type="email" id="forgotEmail" placeholder="البريد الإلكتروني" required></div>
+          <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-paper-plane"></i> إرسال الرابط</button>
+        </form>
+        <div style="margin-top: 15px; text-align: center;">
+          <a href="#" id="backToLoginFromForgot" style="text-decoration:none; color:#8895a7; font-size: 0.9rem;">رجوع</a>
         </div>
-        <button type="button" id="sendOtpBtn" class="btn btn-primary btn-block">
-          <i class="fa-solid fa-paper-plane"></i> إرسال رمز التحقق
-        </button>
-        <button type="button" id="verifyOtpBtn" class="btn btn-primary btn-block hidden">
-          <i class="fa-solid fa-check"></i> تأكيد الدخول
-        </button>
-        <button type="button" id="cancelPhoneAuth" class="btn btn-ghost btn-block" style="margin-top: 10px;">إلغاء</button>
-        <div id="recaptcha-container"></div>
       </div>
 
     </div>
   </div>
 
-  <!-- التطبيق -->
+  <!-- شاشة إعداد الشركة بعد التسجيل -->
+  <div id="setupBusinessScreen" class="login-screen hidden">
+    <div class="login-card">
+      <h2 style="color:#2c3e50; margin-bottom: 10px;">مرحباً بك!</h2>
+      <p style="color:#8895a7; margin-bottom: 20px;">يرجى إدخال بيانات نشاطك التجاري للبدء.</p>
+      <form id="setupBusinessForm">
+        <div class="input-group"><i class="fa-solid fa-building"></i><input type="text" id="setupBizName" placeholder="اسم الشركة أو المؤسسة" required></div>
+        <div class="input-group"><i class="fa-solid fa-location-dot"></i><input type="text" id="setupBizAddress" placeholder="الموقع / العنوان" required></div>
+        <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-check"></i> بدء الاستخدام</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- التطبيق (كما هو) -->
   <div id="app" class="app hidden">
-
-    <button id="mobileMenuBtn" class="mobile-menu-btn">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-
+    <button id="mobileMenuBtn" class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
     <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand">
-        <svg class="sidebar-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="24" fill="#4f8cff"/>
-          <rect x="28" y="26" width="44" height="10" rx="2" fill="white"/>
-          <rect x="28" y="45" width="44" height="10" rx="2" fill="white"/>
-          <rect x="28" y="64" width="28" height="10" rx="2" fill="white"/>
-          <circle cx="66" cy="69" r="5" fill="#ff8a4c"/>
-        </svg>
-        <span>مخزوني</span>
-      </div>
-
-      <div id="syncIndicator" class="sync-indicator" title="حالة المزامنة">
-        <i class="fa-solid fa-cloud"></i>
-        <span id="syncText">متزامن</span>
-      </div>
-
+      <div class="sidebar-brand"><svg class="sidebar-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="24" fill="#4f8cff"/><rect x="28" y="26" width="44" height="10" rx="2" fill="white"/><rect x="28" y="45" width="44" height="10" rx="2" fill="white"/><rect x="28" y="64" width="28" height="10" rx="2" fill="white"/><circle cx="66" cy="69" r="5" fill="#ff8a4c"/></svg><span>مخزوني</span></div>
+      <div id="syncIndicator" class="sync-indicator" title="حالة المزامنة"><i class="fa-solid fa-cloud"></i><span id="syncText">متزامن</span></div>
       <nav class="sidebar-nav">
         <a href="#" class="nav-link active" data-page="dashboard"><i class="fa-solid fa-gauge-high"></i> لوحة التحكم</a>
-
-        <div class="nav-group">
-          <button class="nav-group-toggle" data-group="inventory-group">
-            <i class="fa-solid fa-box"></i> <span>المخزون</span>
-            <i class="fa-solid fa-chevron-down nav-arrow"></i>
-          </button>
-          <div class="nav-group-items" id="inventory-group">
-            <a href="#" class="nav-link sub" data-page="products"><i class="fa-solid fa-box"></i> المنتجات</a>
-            <a href="#" class="nav-link sub" data-page="inventory"><i class="fa-solid fa-warehouse"></i> حالة المخزون <span class="badge badge-danger" id="badgeInventory" style="display:none"></span></a>
-            <a href="#" class="nav-link sub" data-page="barcode"><i class="fa-solid fa-barcode"></i> مسح باركود</a>
-          </div>
-        </div>
-
-        <div class="nav-group">
-          <button class="nav-group-toggle" data-group="sales-group">
-            <i class="fa-solid fa-file-invoice-dollar"></i> <span>المبيعات</span>
-            <i class="fa-solid fa-chevron-down nav-arrow"></i>
-          </button>
-          <div class="nav-group-items" id="sales-group">
-            <a href="#" class="nav-link sub" data-page="sales"><i class="fa-solid fa-file-invoice-dollar"></i> فواتير المبيعات</a>
-            <a href="#" class="nav-link sub" data-page="salesReturns"><i class="fa-solid fa-rotate-left"></i> مرتجع مبيعات</a>
-          </div>
-        </div>
-
-        <div class="nav-group">
-          <button class="nav-group-toggle" data-group="purchases-group">
-            <i class="fa-solid fa-cart-shopping"></i> <span>المشتريات</span>
-            <i class="fa-solid fa-chevron-down nav-arrow"></i>
-          </button>
-          <div class="nav-group-items" id="purchases-group">
-            <a href="#" class="nav-link sub" data-page="purchases"><i class="fa-solid fa-cart-shopping"></i> فواتير المشتريات</a>
-            <a href="#" class="nav-link sub" data-page="purchaseReturns"><i class="fa-solid fa-rotate-right"></i> مرتجع مشتريات</a>
-          </div>
-        </div>
-
-        <div class="nav-group">
-          <button class="nav-group-toggle" data-group="sanadat-group">
-            <i class="fa-solid fa-receipt"></i> <span>السندات</span>
-            <i class="fa-solid fa-chevron-down nav-arrow"></i>
-          </button>
-          <div class="nav-group-items" id="sanadat-group">
-            <a href="#" class="nav-link sub" data-page="receipts"><i class="fa-solid fa-receipt"></i> سندات القبض</a>
-            <a href="#" class="nav-link sub" data-page="payments"><i class="fa-solid fa-money-bill-wave"></i> سندات الصرف</a>
-            <a href="#" class="nav-link sub" data-page="journals"><i class="fa-solid fa-book"></i> سندات القيد</a>
-          </div>
-        </div>
-
-        <div class="nav-group">
-          <button class="nav-group-toggle" data-group="partners-group">
-            <i class="fa-solid fa-users"></i> <span>الشركاء</span>
-            <i class="fa-solid fa-chevron-down nav-arrow"></i>
-          </button>
-          <div class="nav-group-items" id="partners-group">
-            <a href="#" class="nav-link sub" data-page="customers"><i class="fa-solid fa-users"></i> العملاء</a>
-            <a href="#" class="nav-link sub" data-page="suppliers"><i class="fa-solid fa-truck"></i> الموردون</a>
-            <a href="#" class="nav-link sub" data-page="statements"><i class="fa-solid fa-file-lines"></i> كشف حساب</a>
-          </div>
-        </div>
-
-        <div class="nav-group">
-          <button class="nav-group-toggle" data-group="finance-group">
-            <i class="fa-solid fa-vault"></i> <span>المالية</span>
-            <i class="fa-solid fa-chevron-down nav-arrow"></i>
-          </button>
-          <div class="nav-group-items" id="finance-group">
-            <a href="#" class="nav-link sub" data-page="treasury"><i class="fa-solid fa-vault"></i> الخزينة</a>
-            <a href="#" class="nav-link sub" data-page="reports"><i class="fa-solid fa-chart-line"></i> التقارير</a>
-          </div>
-        </div>
-
+        <div class="nav-group"><button class="nav-group-toggle" data-group="inventory-group"><i class="fa-solid fa-box"></i> <span>المخزون</span><i class="fa-solid fa-chevron-down nav-arrow"></i></button><div class="nav-group-items" id="inventory-group"><a href="#" class="nav-link sub" data-page="products"><i class="fa-solid fa-box"></i> المنتجات</a><a href="#" class="nav-link sub" data-page="inventory"><i class="fa-solid fa-warehouse"></i> حالة المخزون <span class="badge badge-danger" id="badgeInventory" style="display:none"></span></a><a href="#" class="nav-link sub" data-page="barcode"><i class="fa-solid fa-barcode"></i> مسح باركود</a></div></div>
+        <div class="nav-group"><button class="nav-group-toggle" data-group="sales-group"><i class="fa-solid fa-file-invoice-dollar"></i> <span>المبيعات</span><i class="fa-solid fa-chevron-down nav-arrow"></i></button><div class="nav-group-items" id="sales-group"><a href="#" class="nav-link sub" data-page="sales"><i class="fa-solid fa-file-invoice-dollar"></i> فواتير المبيعات</a><a href="#" class="nav-link sub" data-page="salesReturns"><i class="fa-solid fa-rotate-left"></i> مرتجع مبيعات</a></div></div>
+        <div class="nav-group"><button class="nav-group-toggle" data-group="purchases-group"><i class="fa-solid fa-cart-shopping"></i> <span>المشتريات</span><i class="fa-solid fa-chevron-down nav-arrow"></i></button><div class="nav-group-items" id="purchases-group"><a href="#" class="nav-link sub" data-page="purchases"><i class="fa-solid fa-cart-shopping"></i> فواتير المشتريات</a><a href="#" class="nav-link sub" data-page="purchaseReturns"><i class="fa-solid fa-rotate-right"></i> مرتجع مشتريات</a></div></div>
+        <div class="nav-group"><button class="nav-group-toggle" data-group="sanadat-group"><i class="fa-solid fa-receipt"></i> <span>السندات</span><i class="fa-solid fa-chevron-down nav-arrow"></i></button><div class="nav-group-items" id="sanadat-group"><a href="#" class="nav-link sub" data-page="receipts"><i class="fa-solid fa-receipt"></i> سندات القبض</a><a href="#" class="nav-link sub" data-page="payments"><i class="fa-solid fa-money-bill-wave"></i> سندات الصرف</a><a href="#" class="nav-link sub" data-page="journals"><i class="fa-solid fa-book"></i> سندات القيد</a></div></div>
+        <div class="nav-group"><button class="nav-group-toggle" data-group="partners-group"><i class="fa-solid fa-users"></i> <span>الشركاء</span><i class="fa-solid fa-chevron-down nav-arrow"></i></button><div class="nav-group-items" id="partners-group"><a href="#" class="nav-link sub" data-page="customers"><i class="fa-solid fa-users"></i> العملاء</a><a href="#" class="nav-link sub" data-page="suppliers"><i class="fa-solid fa-truck"></i> الموردون</a><a href="#" class="nav-link sub" data-page="statements"><i class="fa-solid fa-file-lines"></i> كشف حساب</a></div></div>
+        <div class="nav-group"><button class="nav-group-toggle" data-group="finance-group"><i class="fa-solid fa-vault"></i> <span>المالية</span><i class="fa-solid fa-chevron-down nav-arrow"></i></button><div class="nav-group-items" id="finance-group"><a href="#" class="nav-link sub" data-page="treasury"><i class="fa-solid fa-vault"></i> الخزينة</a><a href="#" class="nav-link sub" data-page="reports"><i class="fa-solid fa-chart-line"></i> التقارير</a></div></div>
         <a href="#" class="nav-link" data-page="settings"><i class="fa-solid fa-gear"></i> الإعدادات</a>
       </nav>
-
-      <div class="sidebar-footer">
-        <button id="darkModeBtn" class="btn btn-ghost btn-block"><i class="fa-solid fa-moon"></i> الوضع الليلي</button>
-        <button id="installAppBtn" class="btn btn-primary btn-block hidden"><i class="fa-solid fa-download"></i> تثبيت التطبيق</button>
-        <button id="logoutBtn" class="btn btn-ghost btn-block logout-btn"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
-      </div>
+      <div class="sidebar-footer"><button id="darkModeBtn" class="btn btn-ghost btn-block"><i class="fa-solid fa-moon"></i> الوضع الليلي</button><button id="installAppBtn" class="btn btn-primary btn-block hidden"><i class="fa-solid fa-download"></i> تثبيت التطبيق</button><button id="logoutBtn" class="btn btn-ghost btn-block logout-btn"><i class="fa-solid fa-right-from-bracket"></i> خروج</button></div>
     </aside>
 
     <main class="main-content">
-
-      <section id="page-dashboard" class="page active">
-        <header class="page-header"><h2><i class="fa-solid fa-gauge-high"></i> لوحة التحكم</h2></header>
-        <div class="stats-grid">
-          <div class="stat-card stat-sales"><div class="stat-icon"><i class="fa-solid fa-sack-dollar"></i></div><div class="stat-info"><span class="stat-label">إجمالي المبيعات</span><span class="stat-value" id="statSales">0.00</span><span class="stat-currency">ر.س</span></div></div>
-          <div class="stat-card stat-purchases"><div class="stat-icon"><i class="fa-solid fa-cart-shopping"></i></div><div class="stat-info"><span class="stat-label">إجمالي المشتريات</span><span class="stat-value" id="statPurchases">0.00</span><span class="stat-currency">ر.س</span></div></div>
-          <div class="stat-card stat-inventory"><div class="stat-icon"><i class="fa-solid fa-boxes-stacked"></i></div><div class="stat-info"><span class="stat-label">قيمة المخزون</span><span class="stat-value" id="statInventory">0.00</span><span class="stat-currency">ر.س</span></div></div>
-          <div class="stat-card stat-products"><div class="stat-icon"><i class="fa-solid fa-tags"></i></div><div class="stat-info"><span class="stat-label">عدد المنتجات</span><span class="stat-value" id="statProducts">0</span><span class="stat-currency">منتج</span></div></div>
-        </div>
-        <h3 class="section-title">💰 أرصدة الخزينة</h3>
-        <div class="treasury-mini-grid" id="treasuryMiniGrid"></div>
-        <h3 class="section-title">📊 نظرة بيانية</h3>
-        <div class="charts-grid">
-          <div class="card chart-card"><h4 class="chart-title">المبيعات - آخر 30 يوم</h4><div class="chart-wrapper"><canvas id="salesChart"></canvas></div></div>
-          <div class="card chart-card"><h4 class="chart-title">أعلى 5 منتجات مبيعاً</h4><div class="chart-wrapper"><canvas id="topProductsChart"></canvas></div></div>
-        </div>
-      </section>
-
-      <section id="page-products" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-box"></i> إدارة المنتجات</h2></header>
-        <div class="card">
-          <h3 class="card-title" id="productFormTitle">إضافة منتج جديد</h3>
-          <form id="productForm" class="form-grid">
-            <div class="form-field"><label>الكود / الباركود</label><input type="text" id="pCode" required></div>
-            <div class="form-field"><label>اسم المنتج</label><input type="text" id="pName" required></div>
-            <div class="form-field"><label>سعر البيع</label><input type="number" id="pPrice" min="0" step="0.01" required></div>
-            <div class="form-field"><label>سعر الشراء</label><input type="number" id="pCost" min="0" step="0.01" value="0"></div>
-            <div class="form-field"><label>الكمية</label><input type="number" id="pQty" min="0" required></div>
-            <div class="form-field">
-              <label>الوحدة</label>
-              <select id="pUnit">
-                <option value="حبة">حبة</option>
-                <option value="درزن">درزن</option>
-                <option value="كيلو">كيلو</option>
-                <option value="جرام">جرام</option>
-                <option value="لتر">لتر</option>
-                <option value="متر">متر</option>
-                <option value="علبة">علبة</option>
-                <option value="كرتون">كرتون</option>
-              </select>
-            </div>
-            <div class="form-field"><label>التفاصيل</label><input type="text" id="pDetails"></div>
-            <div class="form-field"><label>صورة</label><input type="file" id="pImage" accept="image/*"></div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> <span id="productSubmitText">حفظ</span></button>
-              <button type="button" id="cancelProductEdit" class="btn btn-ghost hidden">إلغاء</button>
-            </div>
-          </form>
-        </div>
-        <div class="card">
-          <div class="card-header-row"><h3 class="card-title">المنتجات</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="productSearch" placeholder="بحث..."></div></div>
-          <div class="table-wrap"><table class="data-table"><thead><tr><th>الصورة</th><th>الكود</th><th>الاسم</th><th>سعر البيع</th><th>سعر الشراء</th><th>الكمية</th><th>الوحدة</th><th>إجراءات</th></tr></thead><tbody id="productsBody"></tbody></table></div>
-          <p id="productsEmpty" class="empty-state hidden">لا توجد منتجات.</p>
-        </div>
-      </section>
-
-      <section id="page-customers" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-users"></i> العملاء</h2></header>
-        <div class="card">
-          <h3 class="card-title" id="customerFormTitle">إضافة عميل جديد</h3>
-          <form id="customerForm" class="form-grid">
-            <div class="form-field"><label>الاسم</label><input type="text" id="cName" required></div>
-            <div class="form-field"><label>الهاتف</label><input type="text" id="cPhone"></div>
-            <div class="form-field form-field-full"><label>العنوان</label><input type="text" id="cAddress"></div>
-            <div class="form-field form-field-full"><label>ملاحظات</label><input type="text" id="cNotes"></div>
-            <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> <span id="customerSubmitText">حفظ</span></button><button type="button" id="cancelCustomerEdit" class="btn btn-ghost hidden">إلغاء</button></div>
-          </form>
-        </div>
-        <div class="card">
-          <div class="card-header-row"><h3 class="card-title">القائمة</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="customerSearch" placeholder="بحث..."></div></div>
-          <div class="table-wrap"><table class="data-table"><thead><tr><th>الاسم</th><th>الهاتف</th><th>الرصيد</th><th>إجراءات</th></tr></thead><tbody id="customersBody"></tbody></table></div>
-          <p id="customersEmpty" class="empty-state hidden">لا يوجد عملاء.</p>
-        </div>
-      </section>
-
-      <section id="page-suppliers" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-truck"></i> الموردون</h2></header>
-        <div class="card">
-          <h3 class="card-title" id="supplierFormTitle">إضافة مورد جديد</h3>
-          <form id="supplierForm" class="form-grid">
-            <div class="form-field"><label>الاسم</label><input type="text" id="sName" required></div>
-            <div class="form-field"><label>الهاتف</label><input type="text" id="sPhone"></div>
-            <div class="form-field form-field-full"><label>العنوان</label><input type="text" id="sAddress"></div>
-            <div class="form-field form-field-full"><label>ملاحظات</label><input type="text" id="sNotes"></div>
-            <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> <span id="supplierSubmitText">حفظ</span></button><button type="button" id="cancelSupplierEdit" class="btn btn-ghost hidden">إلغاء</button></div>
-          </form>
-        </div>
-        <div class="card">
-          <div class="card-header-row"><h3 class="card-title">القائمة</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="supplierSearch" placeholder="بحث..."></div></div>
-          <div class="table-wrap"><table class="data-table"><thead><tr><th>الاسم</th><th>الهاتف</th><th>الرصيد</th><th>إجراءات</th></tr></thead><tbody id="suppliersBody"></tbody></table></div>
-          <p id="suppliersEmpty" class="empty-state hidden">لا يوجد موردون.</p>
-        </div>
-      </section>
-
-      <section id="page-sales" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-file-invoice-dollar"></i> فواتير المبيعات</h2></header>
-        <div class="card"><h3 class="card-title">إنشاء فاتورة بيع</h3><form id="form-sale" class="invoice-form" data-type="sale" novalidate></form></div>
-        <div class="card"><div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" class="invoice-search" data-type="sale" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>العميل</th><th>التاريخ</th><th>الدفع</th><th>الإجمالي</th><th>إجراءات</th></tr></thead><tbody class="invoice-list" data-type="sale"></tbody></table></div><p class="empty-state hidden invoice-empty" data-type="sale">لا فواتير.</p></div>
-      </section>
-
-      <section id="page-purchases" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-cart-shopping"></i> فواتير المشتريات</h2></header>
-        <div class="card"><h3 class="card-title">إنشاء فاتورة شراء</h3><form id="form-purchase" class="invoice-form" data-type="purchase" novalidate></form></div>
-        <div class="card"><div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" class="invoice-search" data-type="purchase" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>المورد</th><th>التاريخ</th><th>الدفع</th><th>الإجمالي</th><th>إجراءات</th></tr></thead><tbody class="invoice-list" data-type="purchase"></tbody></table></div><p class="empty-state hidden invoice-empty" data-type="purchase">لا فواتير.</p></div>
-      </section>
-
-      <section id="page-salesReturns" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-rotate-left"></i> مرتجع مبيعات</h2></header>
-        <div class="card"><h3 class="card-title">إنشاء مرتجع</h3><form id="form-sale_return" class="invoice-form" data-type="sale_return" novalidate></form></div>
-        <div class="card"><div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" class="invoice-search" data-type="sale_return" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>العميل</th><th>التاريخ</th><th>الدفع</th><th>الإجمالي</th><th>إجراءات</th></tr></thead><tbody class="invoice-list" data-type="sale_return"></tbody></table></div><p class="empty-state hidden invoice-empty" data-type="sale_return">لا مرتجعات.</p></div>
-      </section>
-
-      <section id="page-purchaseReturns" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-rotate-right"></i> مرتجع مشتريات</h2></header>
-        <div class="card"><h3 class="card-title">إنشاء مرتجع</h3><form id="form-purchase_return" class="invoice-form" data-type="purchase_return" novalidate></form></div>
-        <div class="card"><div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" class="invoice-search" data-type="purchase_return" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>المورد</th><th>التاريخ</th><th>الدفع</th><th>الإجمالي</th><th>إجراءات</th></tr></thead><tbody class="invoice-list" data-type="purchase_return"></tbody></table></div><p class="empty-state hidden invoice-empty" data-type="purchase_return">لا مرتجعات.</p></div>
-      </section>
-
-      <section id="page-receipts" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-receipt"></i> سندات القبض</h2></header>
-        <div class="card">
-          <h3 class="card-title">إنشاء سند قبض</h3>
-          <form id="receiptForm" class="form-grid">
-            <div class="form-field"><label>العميل</label><select id="rFrom" required></select></div>
-            <div class="form-field"><label>المبلغ</label><input type="number" id="rAmount" min="0" step="0.01" required></div>
-            <div class="form-field"><label>التاريخ</label><input type="date" id="rDate" required></div>
-            <div class="form-field"><label>طريقة الدفع</label><select id="rMethod"><option value="نقد">نقد</option><option value="تحويل">تحويل</option><option value="بنك">بنك</option></select></div>
-            <div class="form-field form-field-full"><label>البيان</label><input type="text" id="rNote"></div>
-            <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ السند</button></div>
-          </form>
-        </div>
-        <div class="card">
-          <div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="receiptsSearch" placeholder="بحث..."></div></div>
-          <div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>العميل</th><th>المبلغ</th><th>الطريقة</th><th>التاريخ</th><th>إجراءات</th></tr></thead><tbody id="receiptsBody"></tbody></table></div>
-          <p id="receiptsEmpty" class="empty-state hidden">لا سندات.</p>
-        </div>
-      </section>
-
-      <section id="page-payments" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-money-bill-wave"></i> سندات الصرف</h2></header>
-        <div class="card">
-          <h3 class="card-title">إنشاء سند صرف</h3>
-          <form id="paymentForm" class="form-grid">
-            <div class="form-field"><label>المورد</label><select id="payTo" required></select></div>
-            <div class="form-field"><label>المبلغ</label><input type="number" id="payAmount" min="0" step="0.01" required></div>
-            <div class="form-field"><label>التاريخ</label><input type="date" id="payDate" required></div>
-            <div class="form-field"><label>طريقة الدفع</label><select id="payMethod"><option value="نقد">نقد</option><option value="تحويل">تحويل</option><option value="بنك">بنك</option></select></div>
-            <div class="form-field form-field-full"><label>البيان</label><input type="text" id="payNote"></div>
-            <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ السند</button></div>
-          </form>
-        </div>
-        <div class="card">
-          <div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="paymentsSearch" placeholder="بحث..."></div></div>
-          <div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>المورد</th><th>المبلغ</th><th>الطريقة</th><th>التاريخ</th><th>إجراءات</th></tr></thead><tbody id="paymentsBody"></tbody></table></div>
-          <p id="paymentsEmpty" class="empty-state hidden">لا سندات.</p>
-        </div>
-      </section>
-
-      <section id="page-journals" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-book"></i> سندات القيد</h2></header>
-        <div class="card">
-          <h3 class="card-title">إنشاء سند قيد</h3>
-          <form id="journalForm" class="form-grid">
-            <div class="form-field"><label>البيان</label><input type="text" id="jDesc" required></div>
-            <div class="form-field"><label>التاريخ</label><input type="date" id="jDate" required></div>
-            <div class="form-field"><label>الحساب المدين</label><input type="text" id="jDebit" required></div>
-            <div class="form-field"><label>المبلغ المدين</label><input type="number" id="jDebitAmt" min="0" step="0.01" required></div>
-            <div class="form-field"><label>الحساب الدائن</label><input type="text" id="jCredit" required></div>
-            <div class="form-field"><label>المبلغ الدائن</label><input type="number" id="jCreditAmt" min="0" step="0.01" required></div>
-            <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ القيد</button></div>
-          </form>
-        </div>
-        <div class="card">
-          <div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="journalsSearch" placeholder="بحث..."></div></div>
-          <div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>البيان</th><th>المدين</th><th>الدائن</th><th>المبلغ</th><th>التاريخ</th><th>إجراءات</th></tr></thead><tbody id="journalsBody"></tbody></table></div>
-          <p id="journalsEmpty" class="empty-state hidden">لا قيود.</p>
-        </div>
-      </section>
-
-      <section id="page-treasury" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-vault"></i> الخزينة</h2></header>
-        <div class="treasury-grid" id="treasuryGrid"></div>
-        <div class="card">
-          <h3 class="card-title">📋 حركات الخزينة</h3>
-          <div class="search-box" style="margin-bottom:14px"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="treasurySearch" placeholder="بحث في الحركات..."></div>
-          <div class="table-wrap"><table class="data-table"><thead><tr><th>التاريخ</th><th>النوع</th><th>المرجع</th><th>البيان</th><th>الخزينة</th><th>مدين</th><th>دائن</th></tr></thead><tbody id="treasuryBody"></tbody></table></div>
-          <p id="treasuryEmpty" class="empty-state hidden">لا حركات.</p>
-        </div>
-      </section>
-
-      <section id="page-statements" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-file-lines"></i> كشف حساب</h2></header>
-        <div class="card"><h3 class="card-title">اختر الحساب</h3><div class="form-grid"><div class="form-field form-field-full"><label>العميل / المورد</label><select id="statementSelect"><option value="">-- اختر --</option></select></div></div></div>
-        <div id="statementContent"></div>
-      </section>
-
-      <section id="page-reports" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-chart-line"></i> التقارير الذكية</h2></header>
-        <div class="card">
-          <div class="reports-tabs">
-            <button class="report-tab active" data-report="sales">📈 المبيعات</button>
-            <button class="report-tab" data-report="profit">💰 الأرباح</button>
-            <button class="report-tab" data-report="dead">😴 المنتجات الراكدة</button>
-            <button class="report-tab" data-report="topCustomers">👑 أفضل العملاء</button>
-          </div>
-          <div id="reportContent"></div>
-        </div>
-      </section>
-
-      <section id="page-inventory" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-warehouse"></i> حالة المخزون</h2></header>
-        <div class="card">
-          <div class="card-header-row"><h3 class="card-title">المخزون</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="inventorySearch" placeholder="بحث..."></div></div>
-          <div class="table-wrap"><table class="data-table"><thead><tr><th>الكود</th><th>المنتج</th><th>الكمية</th><th>الوحدة</th><th>سعر البيع</th><th>القيمة</th><th>إجراءات</th></tr></thead><tbody id="inventoryBody"></tbody></table></div>
-          <p id="inventoryEmpty" class="empty-state hidden">المخزون فارغ.</p>
-        </div>
-      </section>
-
-      <section id="page-barcode" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-barcode"></i> مسح باركود</h2></header>
-        <div class="card">
-          <div id="barcodeReader" class="barcode-reader"></div>
-          <div class="barcode-controls">
-            <button id="startScanBtn" class="btn btn-primary"><i class="fa-solid fa-camera"></i> بدء المسح</button>
-            <button id="stopScanBtn" class="btn btn-ghost"><i class="fa-solid fa-stop"></i> إيقاف</button>
-          </div>
-        </div>
-      </section>
-
-      <section id="page-productDetail" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-circle-info"></i> تفاصيل المنتج</h2><button id="backFromProduct" class="btn btn-ghost"><i class="fa-solid fa-arrow-right"></i> رجوع</button></header>
-        <div id="productDetailContent" class="card"></div>
-      </section>
-
-      <section id="page-business" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-building"></i> بيانات النشاط</h2></header>
-        <div class="card">
-          <form id="businessForm" class="form-grid">
-            <div class="form-field"><label>اسم الشركة</label><input type="text" id="bizName" required></div>
-            <div class="form-field"><label>الهاتف</label><input type="text" id="bizPhone"></div>
-            <div class="form-field form-field-full"><label>العنوان</label><input type="text" id="bizAddress"></div>
-            <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ</button></div>
-          </form>
-        </div>
-      </section>
-
-      <section id="page-settings" class="page">
-        <header class="page-header"><h2><i class="fa-solid fa-gear"></i> الإعدادات</h2></header>
-        <div class="card">
-          <h3 class="card-title"><i class="fa-solid fa-cloud"></i> حالة المزامنة</h3>
-          <div id="syncStatusBox" style="padding:16px;background:#f0fdf4;border-radius:10px;border:2px solid #2ecc71;margin-bottom:14px">
-            <div style="display:flex;align-items:center;gap:12px"><i class="fa-solid fa-circle-check" style="color:#2ecc71;font-size:1.5rem"></i><div><strong style="display:block">مزامنة سحابية نشطة</strong><small class="muted" id="syncEmailDisplay">—</small></div></div>
-          </div>
-          <button id="manualSyncBtn" class="btn btn-primary btn-block"><i class="fa-solid fa-rotate"></i> مزامنة الآن</button>
-        </div>
-        <div class="card">
-          <h3 class="card-title"><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</h3>
-          <form id="emailForm" class="form-grid">
-            <div class="form-field form-field-full"><label>البريد الإلكتروني الحالي</label><input type="email" id="setEmail" placeholder="example@mail.com" required></div>
-            <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> تغيير البريد</button></div>
-          </form>
-        </div>
-        <div class="card">
-          <h3 class="card-title"><i class="fa-solid fa-lock"></i> كلمة المرور</h3>
-          <form id="passwordForm" class="form-grid">
-            <div class="form-field"><label>كلمة المرور الحالية</label><input type="password" id="setOldPass" required></div>
-            <div class="form-field"><label>كلمة المرور الجديدة</label><input type="password" id="setNewPass" required minlength="6"></div>
-            <div class="form-field"><label>تأكيد كلمة المرور</label><input type="password" id="setNewPass2" required></div>
-            <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-key"></i> تغيير كلمة المرور</button></div>
-          </form>
-        </div>
-        <div class="card">
-          <h3 class="card-title"><i class="fa-solid fa-palette"></i> المظهر</h3>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-            <div><strong>الوضع الداكن</strong><p class="muted" style="font-size:0.82rem">تفعيل/تعطيل الوضع الليلي</p></div>
-            <button id="settingsDarkBtn" class="btn btn-ghost"><i class="fa-solid fa-moon"></i> تبديل</button>
-          </div>
-        </div>
-        <div class="card">
-          <h3 class="card-title"><i class="fa-solid fa-building"></i> بيانات النشاط</h3>
-          <form id="businessForm2" class="form-grid">
-            <div class="form-field"><label>اسم الشركة</label><input type="text" id="bizName2"></div>
-            <div class="form-field"><label>الهاتف</label><input type="text" id="bizPhone2"></div>
-            <div class="form-field form-field-full"><label>العنوان</label><input type="text" id="bizAddress2"></div>
-            <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ</button></div>
-          </form>
-        </div>
-        <div class="card">
-          <h3 class="card-title"><i class="fa-solid fa-database"></i> النسخ الاحتياطي المحلي</h3>
-          <p class="muted" style="margin-bottom:14px;font-size:0.85rem">نسخة محلية إضافية (بجانب المزامنة السحابية).</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <button id="exportBackupBtn" class="btn btn-primary"><i class="fa-solid fa-download"></i> تصدير نسخة</button>
-            <label class="btn btn-ghost" style="cursor:pointer"><i class="fa-solid fa-upload"></i> استيراد نسخة<input type="file" id="importBackupInput" accept="application/json" style="display:none"></label>
-          </div>
-        </div>
-        <div class="card">
-          <h3 class="card-title"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</h3>
-          <button id="logoutBtn2" class="btn btn-ghost logout-btn"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
-        </div>
-      </section>
-
+      <section id="page-dashboard" class="page active"><header class="page-header"><h2><i class="fa-solid fa-gauge-high"></i> لوحة التحكم</h2></header><div class="stats-grid"><div class="stat-card stat-sales"><div class="stat-icon"><i class="fa-solid fa-sack-dollar"></i></div><div class="stat-info"><span class="stat-label">إجمالي المبيعات</span><span class="stat-value" id="statSales">0.00</span><span class="stat-currency">ر.س</span></div></div><div class="stat-card stat-purchases"><div class="stat-icon"><i class="fa-solid fa-cart-shopping"></i></div><div class="stat-info"><span class="stat-label">إجمالي المشتريات</span><span class="stat-value" id="statPurchases">0.00</span><span class="stat-currency">ر.س</span></div></div><div class="stat-card stat-inventory"><div class="stat-icon"><i class="fa-solid fa-boxes-stacked"></i></div><div class="stat-info"><span class="stat-label">قيمة المخزون</span><span class="stat-value" id="statInventory">0.00</span><span class="stat-currency">ر.س</span></div></div><div class="stat-card stat-products"><div class="stat-icon"><i class="fa-solid fa-tags"></i></div><div class="stat-info"><span class="stat-label">عدد المنتجات</span><span class="stat-value" id="statProducts">0</span><span class="stat-currency">منتج</span></div></div></div><h3 class="section-title">💰 أرصدة الخزينة</h3><div class="treasury-mini-grid" id="treasuryMiniGrid"></div><h3 class="section-title">📊 نظرة بيانية</h3><div class="charts-grid"><div class="card chart-card"><h4 class="chart-title">المبيعات - آخر 30 يوم</h4><div class="chart-wrapper"><canvas id="salesChart"></canvas></div></div><div class="card chart-card"><h4 class="chart-title">أعلى 5 منتجات مبيعاً</h4><div class="chart-wrapper"><canvas id="topProductsChart"></canvas></div></div></div></section>
+      <section id="page-products" class="page"><header class="page-header"><h2><i class="fa-solid fa-box"></i> إدارة المنتجات</h2></header><div class="card"><h3 class="card-title" id="productFormTitle">إضافة منتج جديد</h3><form id="productForm" class="form-grid"><div class="form-field"><label>الكود / الباركود (اختياري)</label><div style="display:flex; gap:10px;"><input type="text" id="pCode" placeholder="اتركه فارغاً للتوليد التلقائي"><button type="button" id="scanProductBarcodeBtn" class="btn btn-primary" style="padding:0 15px;" title="مسح الباركود بالكاميرا"><i class="fa-solid fa-camera"></i></button></div></div><div class="form-field"><label>اسم المنتج</label><input type="text" id="pName" required></div><div class="form-field"><label>سعر البيع</label><input type="number" id="pPrice" min="0" step="0.01" required></div><div class="form-field"><label>سعر الشراء</label><input type="number" id="pCost" min="0" step="0.01" value="0"></div><div class="form-field"><label>الكمية</label><input type="number" id="pQty" min="0" required></div><div class="form-field"><label>الوحدة</label><select id="pUnit"><option value="حبة">حبة</option><option value="درزن">درزن</option><option value="كيلو">كيلو</option><option value="جرام">جرام</option><option value="لتر">لتر</option><option value="متر">متر</option><option value="علبة">علبة</option><option value="كرتون">كرتون</option></select></div><div class="form-field"><label>التفاصيل</label><input type="text" id="pDetails"></div><div class="form-field"><label>صورة</label><input type="file" id="pImage" accept="image/*"></div><div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> <span id="productSubmitText">حفظ</span></button><button type="button" id="cancelProductEdit" class="btn btn-ghost hidden">إلغاء</button></div></form></div><div class="card"><div class="card-header-row"><h3 class="card-title">المنتجات</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="productSearch" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الصورة</th><th>الكود</th><th>الاسم</th><th>سعر البيع</th><th>سعر الشراء</th><th>الكمية</th><th>الوحدة</th><th>إجراءات</th></tr></thead><tbody id="productsBody"></tbody></table></div><p id="productsEmpty" class="empty-state hidden">لا توجد منتجات.</p></div></section>
+      <section id="page-customers" class="page"><header class="page-header"><h2><i class="fa-solid fa-users"></i> العملاء</h2></header><div class="card"><h3 class="card-title" id="customerFormTitle">إضافة عميل جديد</h3><form id="customerForm" class="form-grid"><div class="form-field"><label>الاسم</label><input type="text" id="cName" required></div><div class="form-field"><label>الهاتف</label><input type="tel" id="cPhone" placeholder="966500000000"></div><div class="form-field form-field-full"><label>العنوان</label><input type="text" id="cAddress"></div><div class="form-field form-field-full"><label>ملاحظات</label><input type="text" id="cNotes"></div><div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> <span id="customerSubmitText">حفظ</span></button><button type="button" id="cancelCustomerEdit" class="btn btn-ghost hidden">إلغاء</button></div></form></div><div class="card"><div class="card-header-row"><h3 class="card-title">القائمة</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="customerSearch" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الاسم</th><th>الهاتف</th><th>الرصيد</th><th>إجراءات</th></tr></thead><tbody id="customersBody"></tbody></table></div><p id="customersEmpty" class="empty-state hidden">لا يوجد عملاء.</p></div></section>
+      <section id="page-suppliers" class="page"><header class="page-header"><h2><i class="fa-solid fa-truck"></i> الموردون</h2></header><div class="card"><h3 class="card-title" id="supplierFormTitle">إضافة مورد جديد</h3><form id="supplierForm" class="form-grid"><div class="form-field"><label>الاسم</label><input type="text" id="sName" required></div><div class="form-field"><label>الهاتف</label><input type="tel" id="sPhone"></div><div class="form-field form-field-full"><label>العنوان</label><input type="text" id="sAddress"></div><div class="form-field form-field-full"><label>ملاحظات</label><input type="text" id="sNotes"></div><div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> <span id="supplierSubmitText">حفظ</span></button><button type="button" id="cancelSupplierEdit" class="btn btn-ghost hidden">إلغاء</button></div></form></div><div class="card"><div class="card-header-row"><h3 class="card-title">القائمة</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="supplierSearch" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الاسم</th><th>الهاتف</th><th>الرصيد</th><th>إجراءات</th></tr></thead><tbody id="suppliersBody"></tbody></table></div><p id="suppliersEmpty" class="empty-state hidden">لا يوجد موردون.</p></div></section>
+      <section id="page-sales" class="page"><header class="page-header"><h2><i class="fa-solid fa-file-invoice-dollar"></i> فواتير المبيعات</h2></header><div class="card"><h3 class="card-title">إنشاء فاتورة بيع</h3><form id="form-sale" class="invoice-form" data-type="sale" novalidate></form></div><div class="card"><div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" class="invoice-search" data-type="sale" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>العميل</th><th>التاريخ</th><th>الدفع</th><th>الإجمالي</th><th>إجراءات</th></tr></thead><tbody class="invoice-list" data-type="sale"></tbody></table></div><p class="empty-state hidden invoice-empty" data-type="sale">لا فواتير.</p></div></section>
+      <section id="page-purchases" class="page"><header class="page-header"><h2><i class="fa-solid fa-cart-shopping"></i> فواتير المشتريات</h2></header><div class="card"><h3 class="card-title">إنشاء فاتورة شراء</h3><form id="form-purchase" class="invoice-form" data-type="purchase" novalidate></form></div><div class="card"><div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" class="invoice-search" data-type="purchase" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>المورد</th><th>التاريخ</th><th>الدفع</th><th>الإجمالي</th><th>إجراءات</th></tr></thead><tbody class="invoice-list" data-type="purchase"></tbody></table></div><p class="empty-state hidden invoice-empty" data-type="purchase">لا فواتير.</p></div></section>
+      <section id="page-salesReturns" class="page"><header class="page-header"><h2><i class="fa-solid fa-rotate-left"></i> مرتجع مبيعات</h2></header><div class="card"><h3 class="card-title">إنشاء مرتجع</h3><form id="form-sale_return" class="invoice-form" data-type="sale_return" novalidate></form></div><div class="card"><div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" class="invoice-search" data-type="sale_return" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>العميل</th><th>التاريخ</th><th>الدفع</th><th>الإجمالي</th><th>إجراءات</th></tr></thead><tbody class="invoice-list" data-type="sale_return"></tbody></table></div><p class="empty-state hidden invoice-empty" data-type="sale_return">لا مرتجعات.</p></div></section>
+      <section id="page-purchaseReturns" class="page"><header class="page-header"><h2><i class="fa-solid fa-rotate-right"></i> مرتجع مشتريات</h2></header><div class="card"><h3 class="card-title">إنشاء مرتجع</h3><form id="form-purchase_return" class="invoice-form" data-type="purchase_return" novalidate></form></div><div class="card"><div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" class="invoice-search" data-type="purchase_return" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>المورد</th><th>التاريخ</th><th>الدفع</th><th>الإجمالي</th><th>إجراءات</th></tr></thead><tbody class="invoice-list" data-type="purchase_return"></tbody></table></div><p class="empty-state hidden invoice-empty" data-type="purchase_return">لا مرتجعات.</p></div></section>
+      <section id="page-receipts" class="page"><header class="page-header"><h2><i class="fa-solid fa-receipt"></i> سندات القبض</h2></header><div class="card"><h3 class="card-title">إنشاء سند قبض</h3><form id="receiptForm" class="form-grid"><div class="form-field"><label>العميل</label><select id="rFrom" required></select></div><div class="form-field"><label>المبلغ</label><input type="number" id="rAmount" min="0" step="0.01" required></div><div class="form-field"><label>التاريخ</label><input type="date" id="rDate" required></div><div class="form-field"><label>طريقة الدفع</label><select id="rMethod"><option value="نقد">نقد</option><option value="تحويل">تحويل</option><option value="بنك">بنك</option></select></div><div class="form-field form-field-full"><label>البيان</label><input type="text" id="rNote"></div><div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ السند</button></div></form></div><div class="card"><div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="receiptsSearch" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>العميل</th><th>المبلغ</th><th>الطريقة</th><th>التاريخ</th><th>إجراءات</th></tr></thead><tbody id="receiptsBody"></tbody></table></div><p id="receiptsEmpty" class="empty-state hidden">لا سندات.</p></div></section>
+      <section id="page-payments" class="page"><header class="page-header"><h2><i class="fa-solid fa-money-bill-wave"></i> سندات الصرف</h2></header><div class="card"><h3 class="card-title">إنشاء سند صرف</h3><form id="paymentForm" class="form-grid"><div class="form-field"><label>المورد</label><select id="payTo" required></select></div><div class="form-field"><label>المبلغ</label><input type="number" id="payAmount" min="0" step="0.01" required></div><div class="form-field"><label>التاريخ</label><input type="date" id="payDate" required></div><div class="form-field"><label>طريقة الدفع</label><select id="payMethod"><option value="نقد">نقد</option><option value="تحويل">تحويل</option><option value="بنك">بنك</option></select></div><div class="form-field form-field-full"><label>البيان</label><input type="text" id="payNote"></div><div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ السند</button></div></form></div><div class="card"><div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="paymentsSearch" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>المورد</th><th>المبلغ</th><th>الطريقة</th><th>التاريخ</th><th>إجراءات</th></tr></thead><tbody id="paymentsBody"></tbody></table></div><p id="paymentsEmpty" class="empty-state hidden">لا سندات.</p></div></section>
+      <section id="page-journals" class="page"><header class="page-header"><h2><i class="fa-solid fa-book"></i> سندات القيد</h2></header><div class="card"><h3 class="card-title">إنشاء سند قيد</h3><form id="journalForm" class="form-grid"><div class="form-field"><label>البيان</label><input type="text" id="jDesc" required></div><div class="form-field"><label>التاريخ</label><input type="date" id="jDate" required></div><div class="form-field"><label>الحساب المدين</label><input type="text" id="jDebit" required></div><div class="form-field"><label>المبلغ المدين</label><input type="number" id="jDebitAmt" min="0" step="0.01" required></div><div class="form-field"><label>الحساب الدائن</label><input type="text" id="jCredit" required></div><div class="form-field"><label>المبلغ الدائن</label><input type="number" id="jCreditAmt" min="0" step="0.01" required></div><div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ القيد</button></div></form></div><div class="card"><div class="card-header-row"><h3 class="card-title">السجل</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="journalsSearch" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الرقم</th><th>البيان</th><th>المدين</th><th>الدائن</th><th>المبلغ</th><th>التاريخ</th><th>إجراءات</th></tr></thead><tbody id="journalsBody"></tbody></table></div><p id="journalsEmpty" class="empty-state hidden">لا قيود.</p></div></section>
+      <section id="page-treasury" class="page"><header class="page-header"><h2><i class="fa-solid fa-vault"></i> الخزينة</h2></header><div class="treasury-grid" id="treasuryGrid"></div><div class="card"><h3 class="card-title">📋 حركات الخزينة</h3><div class="search-box" style="margin-bottom:14px"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="treasurySearch" placeholder="بحث في الحركات..."></div><div class="table-wrap"><table class="data-table"><thead><tr><th>التاريخ</th><th>النوع</th><th>المرجع</th><th>البيان</th><th>الخزينة</th><th>مدين</th><th>دائن</th></tr></thead><tbody id="treasuryBody"></tbody></table></div><p id="treasuryEmpty" class="empty-state hidden">لا حركات.</p></div></section>
+      <section id="page-statements" class="page"><header class="page-header"><h2><i class="fa-solid fa-file-lines"></i> كشف حساب</h2></header><div class="card"><h3 class="card-title">اختر الحساب</h3><div class="form-grid"><div class="form-field form-field-full"><label>العميل / المورد</label><select id="statementSelect"><option value="">-- اختر --</option></select></div></div></div><div id="statementContent"></div></section>
+      <section id="page-reports" class="page"><header class="page-header"><h2><i class="fa-solid fa-chart-line"></i> التقارير الذكية</h2></header><div class="card"><div class="reports-tabs"><button class="report-tab active" data-report="sales">📈 المبيعات</button><button class="report-tab" data-report="profit">💰 الأرباح</button><button class="report-tab" data-report="dead">😴 المنتجات الراكدة</button><button class="report-tab" data-report="topCustomers">👑 أفضل العملاء</button></div><div id="reportContent"></div></div></section>
+      <section id="page-inventory" class="page"><header class="page-header"><h2><i class="fa-solid fa-warehouse"></i> حالة المخزون</h2></header><div class="card"><div class="card-header-row"><h3 class="card-title">المخزون</h3><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="inventorySearch" placeholder="بحث..."></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>الكود</th><th>المنتج</th><th>الكمية</th><th>الوحدة</th><th>سعر البيع</th><th>القيمة</th><th>إجراءات</th></tr></thead><tbody id="inventoryBody"></tbody></table></div><p id="inventoryEmpty" class="empty-state hidden">المخزون فارغ.</p></div></section>
+      <section id="page-barcode" class="page"><header class="page-header"><h2><i class="fa-solid fa-barcode"></i> مسح باركود</h2></header><div class="card"><div id="barcodeReader" class="barcode-reader"></div><div class="barcode-controls"><button id="startScanBtn" class="btn btn-primary"><i class="fa-solid fa-camera"></i> بدء المسح</button><button id="stopScanBtn" class="btn btn-ghost"><i class="fa-solid fa-stop"></i> إيقاف</button></div></div></section>
+      <section id="page-productDetail" class="page"><header class="page-header"><h2><i class="fa-solid fa-circle-info"></i> تفاصيل المنتج</h2><button id="backFromProduct" class="btn btn-ghost"><i class="fa-solid fa-arrow-right"></i> رجوع</button></header><div id="productDetailContent" class="card"></div></section>
+      <section id="page-business" class="page"><header class="page-header"><h2><i class="fa-solid fa-building"></i> بيانات النشاط</h2></header><div class="card"><form id="businessForm" class="form-grid"><div class="form-field"><label>اسم الشركة</label><input type="text" id="bizName" required></div><div class="form-field"><label>الهاتف</label><input type="text" id="bizPhone"></div><div class="form-field form-field-full"><label>العنوان</label><input type="text" id="bizAddress"></div><div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ</button></div></form></div></section>
+      <section id="page-settings" class="page"><header class="page-header"><h2><i class="fa-solid fa-gear"></i> الإعدادات</h2></header><div class="card"><h3 class="card-title"><i class="fa-solid fa-cloud"></i> حالة المزامنة</h3><div id="syncStatusBox" style="padding:16px;background:#f0fdf4;border-radius:10px;border:2px solid #2ecc71;margin-bottom:14px"><div style="display:flex;align-items:center;gap:12px"><i class="fa-solid fa-circle-check" style="color:#2ecc71;font-size:1.5rem"></i><div><strong style="display:block">مزامنة سحابية نشطة</strong><small class="muted" id="syncEmailDisplay">—</small></div></div></div><button id="manualSyncBtn" class="btn btn-primary btn-block"><i class="fa-solid fa-rotate"></i> مزامنة الآن</button></div><div class="card"><h3 class="card-title"><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</h3><form id="emailForm" class="form-grid"><div class="form-field form-field-full"><label>البريد الإلكتروني الحالي</label><input type="email" id="setEmail" placeholder="example@mail.com" required></div><div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> تغيير البريد</button></div></form></div><div class="card"><h3 class="card-title"><i class="fa-solid fa-lock"></i> كلمة المرور</h3><form id="passwordForm" class="form-grid"><div class="form-field"><label>كلمة المرور الحالية</label><input type="password" id="setOldPass" required></div><div class="form-field"><label>كلمة المرور الجديدة</label><input type="password" id="setNewPass" required minlength="6"></div><div class="form-field"><label>تأكيد كلمة المرور</label><input type="password" id="setNewPass2" required></div><div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-key"></i> تغيير كلمة المرور</button></div></form></div><div class="card"><h3 class="card-title"><i class="fa-solid fa-palette"></i> المظهر</h3><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><div><strong>الوضع الداكن</strong><p class="muted" style="font-size:0.82rem">تفعيل/تعطيل الوضع الليلي</p></div><button id="settingsDarkBtn" class="btn btn-ghost"><i class="fa-solid fa-moon"></i> تبديل</button></div></div><div class="card"><h3 class="card-title"><i class="fa-solid fa-building"></i> بيانات النشاط</h3><form id="businessForm2" class="form-grid"><div class="form-field"><label>اسم الشركة</label><input type="text" id="bizName2"></div><div class="form-field"><label>الهاتف</label><input type="text" id="bizPhone2"></div><div class="form-field form-field-full"><label>العنوان</label><input type="text" id="bizAddress2"></div><div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ</button></div></form></div><div class="card"><h3 class="card-title"><i class="fa-solid fa-database"></i> النسخ الاحتياطي المحلي</h3><p class="muted" style="margin-bottom:14px;font-size:0.85rem">نسخة محلية إضافية (بجانب المزامنة السحابية).</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button id="exportBackupBtn" class="btn btn-primary"><i class="fa-solid fa-download"></i> تصدير نسخة</button><label class="btn btn-ghost" style="cursor:pointer"><i class="fa-solid fa-upload"></i> استيراد نسخة<input type="file" id="importBackupInput" accept="application/json" style="display:none"></label></div></div><div class="card"><h3 class="card-title"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</h3><button id="logoutBtn2" class="btn btn-ghost logout-btn"><i class="fa-solid fa-right-from-bracket"></i> خروج</button></div></section>
     </main>
-
     <div id="sidebarOverlay" class="sidebar-overlay hidden"></div>
   </div>
 
-  <div id="itemModal" class="item-modal hidden">
-    <div class="item-modal-content">
-      <div class="item-modal-header"><h3><i class="fa-solid fa-pen"></i> تعديل الصنف</h3><button id="closeItemModal" class="item-modal-close"><i class="fa-solid fa-xmark"></i></button></div>
-      <div class="item-modal-body">
-        <div class="item-product-info"><div id="itemProductName"></div><div id="itemProductCode"></div></div>
-        <div class="item-field"><label>الكمية</label><input type="number" id="itemQtyInput" min="1" value="1"></div>
-        <div class="item-field"><label>السعر (ر.س)</label><input type="number" id="itemPriceInput" min="0" step="0.01" value="0"></div>
-        <div class="item-subtotal"><span>الإجمالي:</span><strong id="itemSubtotal">0.00 ر.س</strong></div>
-      </div>
-      <div class="item-modal-footer"><button id="confirmItemBtn" class="btn btn-primary btn-block"><i class="fa-solid fa-check"></i> إضافة للفاتورة</button></div>
-    </div>
-  </div>
-
-  <div id="scanModal" class="scan-modal hidden">
-    <div class="scan-modal-content">
-      <div class="scan-modal-header"><h3><i class="fa-solid fa-camera"></i> مسح الباركود</h3><button id="closeScanBtn" class="scan-close"><i class="fa-solid fa-xmark"></i></button></div>
-      <div id="scanReader" class="scan-reader"></div>
-      <p class="scan-hint">وجّه الكاميرا نحو الباركود</p>
-    </div>
-  </div>
-
-  <div id="labelModal" class="scan-modal hidden">
-    <div class="scan-modal-content" style="max-width: 380px">
-      <div class="scan-modal-header"><h3><i class="fa-solid fa-tag"></i> طباعة ملصق باركود</h3><button id="closeLabelModal" class="scan-close"><i class="fa-solid fa-xmark"></i></button></div>
-      <div style="padding: 20px">
-        <div class="form-field" style="margin-bottom: 12px"><label>عدد الملصقات</label><input type="number" id="labelCount" value="1" min="1" max="50"></div>
-        <div class="form-field" style="margin-bottom: 12px"><label>مقاس الملصق</label><select id="labelSize"><option value="small">صغير (40×30مم)</option><option value="medium" selected>متوسط (60×40مم)</option><option value="large">كبير (80×50مم)</option></select></div>
-        <div class="form-field" style="margin-bottom: 16px"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="labelShowPrice" checked style="width:auto"> إظهار السعر</label></div>
-        <div id="labelPreview" class="label-preview"></div>
-        <button id="printLabelsBtn" class="btn btn-primary btn-block" style="margin-top: 14px"><i class="fa-solid fa-print"></i> طباعة</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="printModal" class="modal-overlay hidden">
-    <div class="modal-content">
-      <div class="modal-toolbar no-print">
-        <button id="printBtn" class="btn btn-primary"><i class="fa-solid fa-print"></i> طباعة</button>
-        <button id="downloadPdfBtn" class="btn btn-secondary"><i class="fa-solid fa-file-pdf"></i> تحميل PDF</button>
-        <button id="closePrintBtn" class="btn btn-ghost"><i class="fa-solid fa-xmark"></i> إغلاق</button>
-      </div>
-      <div id="printArea" class="print-area-on-screen"></div>
-    </div>
-  </div>
-
+  <div id="itemModal" class="item-modal hidden"><div class="item-modal-content"><div class="item-modal-header"><h3><i class="fa-solid fa-pen"></i> تعديل الصنف</h3><button id="closeItemModal" class="item-modal-close"><i class="fa-solid fa-xmark"></i></button></div><div class="item-modal-body"><div class="item-product-info"><div id="itemProductName"></div><div id="itemProductCode"></div></div><div class="item-field"><label>الكمية</label><input type="number" id="itemQtyInput" min="1" value="1"></div><div class="item-field"><label>السعر (ر.س)</label><input type="number" id="itemPriceInput" min="0" step="0.01" value="0"></div><div class="item-subtotal"><span>الإجمالي:</span><strong id="itemSubtotal">0.00 ر.س</strong></div></div><div class="item-modal-footer"><button id="confirmItemBtn" class="btn btn-primary btn-block"><i class="fa-solid fa-check"></i> إضافة للفاتورة</button></div></div></div>
+  <div id="scanModal" class="scan-modal hidden"><div class="scan-modal-content"><div class="scan-modal-header"><h3><i class="fa-solid fa-camera"></i> مسح الباركود</h3><button id="closeScanBtn" class="scan-close"><i class="fa-solid fa-xmark"></i></button></div><div id="scanReader" class="scan-reader"></div><p class="scan-hint">وجّه الكاميرا نحو الباركود</p></div></div>
+  <div id="labelModal" class="scan-modal hidden"><div class="scan-modal-content" style="max-width: 380px"><div class="scan-modal-header"><h3><i class="fa-solid fa-tag"></i> طباعة ملصق باركود</h3><button id="closeLabelModal" class="scan-close"><i class="fa-solid fa-xmark"></i></button></div><div style="padding: 20px"><div class="form-field" style="margin-bottom: 12px"><label>عدد الملصقات</label><input type="number" id="labelCount" value="1" min="1" max="50"></div><div class="form-field" style="margin-bottom: 12px"><label>مقاس الملصق</label><select id="labelSize"><option value="small">صغير (40×30مم)</option><option value="medium" selected>متوسط (60×40مم)</option><option value="large">كبير (80×50مم)</option></select></div><div class="form-field" style="margin-bottom: 16px"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="labelShowPrice" checked style="width:auto"> إظهار السعر</label></div><div id="labelPreview" class="label-preview"></div><button id="printLabelsBtn" class="btn btn-primary btn-block" style="margin-top: 14px"><i class="fa-solid fa-print"></i> طباعة</button></div></div></div>
+  <div id="printModal" class="modal-overlay hidden"><div class="modal-content"><div class="modal-toolbar no-print"><button id="printBtn" class="btn btn-primary"><i class="fa-solid fa-print"></i> طباعة</button><button id="downloadPdfBtn" class="btn btn-secondary"><i class="fa-solid fa-file-pdf"></i> تحميل PDF</button><button id="whatsappShareBtn" class="btn" style="background:#25D366; color:#fff;"><i class="fa-brands fa-whatsapp"></i> إرسال بالواتساب</button><button id="closePrintBtn" class="btn btn-ghost"><i class="fa-solid fa-xmark"></i> إغلاق</button></div><div id="printArea" class="print-area-on-screen"></div></div></div>
   <div id="toast" class="toast"></div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
   <script src="https://unpkg.com/html5-qrcode"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
   <script src="cloud.js"></script>
   <script src="app.js"></script>
-
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
-        navigator.serviceWorker.register("sw.js").catch(function (e) {
-          console.warn("SW registration failed:", e);
-        });
+        navigator.serviceWorker.register("sw.js").catch(function (e) { console.warn("SW registration failed:", e); });
       });
     }
   </script>

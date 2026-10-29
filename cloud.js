@@ -57,11 +57,12 @@
     },
     signOut: function () { return this.auth.signOut(); },
 
-    // === دوال الجوال المحدثة ===
+    // === إعداد الجوال باستخدام reCAPTCHA ===
     setupRecaptcha: function (containerId) {
       if (!window.recaptchaVerifier) {
+        // نستخدم size: 'normal' لكي تظهر النافذة بوضوح ولا تتعطل
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(containerId, {
-          size: 'invisible',
+          size: 'normal',
           callback: function (response) {}
         });
       }
