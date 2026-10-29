@@ -362,7 +362,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("afterprint", function () { isPrinting = false; });
   }
   
-  function shareToWhatsapp() {
+    function shareToWhatsapp() {
     var docType = byId("printArea").getAttribute("data-doc-type");
     var docId = byId("printArea").getAttribute("data-doc-id");
     var entityPhone = "";
@@ -371,6 +371,115 @@ document.addEventListener("DOMContentLoaded", function () {
     var amount = 0;
     var date = "";
     var number = "";
+    
+    if (docType === "invoice") {
+      var inv = invoices.find(function (x) { return x.id === docId; });
+      if (!inv) { toast("لا توجد فاتورة", "error"); return; }
+      var entity = null;
+      if (inv.type === "sale" || inv.type === "sale_return") entity = customers.find(function (c) { return c.id === inv.customerId; });
+      else entity = suppliers.find(function (s) { return s.id === inv.customerId; });
+      
+      entityPhone = entity ? entity.phone : "";
+      entityName = entity ? entity.name : inv.customer;
+      msgTitle = TYPES[inv.type].label;
+      amount = inv.grandTotal;
+      date = inv.date;
+      number = inv.number;
+      
+    } else if (docType === "sanad") {
+      var sanadKind = byId("printArea").getAttribute("data-sanad-kind");
+      var data = null;
+      if (sanadKind === "receipt") { data = receipts.find(function (r) { return r.id === docId; }); msgTitle = "سند قبض"; }
+      else if (sanadKind === "payment") { data = payments.find(function (p) { return p.id === docId; }); msgTitle = "سند صرف"; }
+      else { data = journals.find(function (j) { return j.id === docId; }); msgTitle = "سند قيد"; }
+      
+      if (!data) { toast("لا يوجد سند", "error"); return; }
+      
+      if (sanadKind !== "journal") {
+        var entity = customers.find(function (c) { return c.name === data.customer; }) || suppliers.find(function (s) { return s.name === data.customer; });
+        entityPhone = entity ? entity.phone : "";
+      }
+      entityName = data.customer || "";
+      amount = data.amount;
+      date = data.date;
+      number = data.number;
+    }
+    
+    if (!entityPhone) { toast("رقم الهاتف غير مسجل في بطاقة الطرف الآخر", "error"); return; }
+    
+    var phone = String(entityPhone).replace(/\D/g, "");
+    if (phone.startsWith("0")) phone = phone.substring(1);
+    if (!phone.startsWith("966")) phone = "966" + phone;
+    
+    var text = "*" + business.name + "*\n";
+    text += "مرحباً " + entityName + "،\n";
+    text += "تم إنشاء " + msgTitle + " رقم: *" + number + "*\n";
+    text += "التاريخ: " + date + "\n";
+    text += "المبلغ الإجمالي: *" + fmt(amount) + " ر.س*\n\n";
+    text += "شكراً لتعاملكم معنا!";
+    
+    var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+    
+    // الحل النهائي: استخدام location.href لضمان العمل على الجوال
+    window.location.href = url;
+  }
+    
+    if (docType === "invoice") {
+      var inv = invoices.find(function (x) { return x.id === docId; });
+      if (!inv) { toast("لا توجد فاتورة", "error"); return; }
+      var entity = null;
+      if (inv.type === "sale" || inv.type === "sale_return") entity = customers.find(function (c) { return c.id === inv.customerId; });
+      else entity = suppliers.find(function (s) { return s.id === inv.customerId; });
+      
+      entityPhone = entity ? entity.phone : "";
+      entityName = entity ? entity.name : inv.customer;
+      msgTitle = TYPES[inv.type].label;
+      amount = inv.grandTotal;
+      date = inv.date;
+      number = inv.number;
+      
+    } else if (docType === "sanad") {
+      var sanadKind = byId("printArea").getAttribute("data-sanad-kind");
+      var data = null;
+      if (sanadKind === "receipt") { data = receipts.find(function (r) { return r.id === docId; }); msgTitle = "سند قبض"; }
+      else if (sanadKind === "payment") { data = payments.find(function (p) { return p.id === docId; }); msgTitle = "سند صرف"; }
+      else { data = journals.find(function (j) { return j.id === docId; }); msgTitle = "سند قيد"; }
+      
+      if (!data) { toast("لا يوجد سند", "error"); return; }
+      
+      if (sanadKind !== "journal") {
+        var entity = customers.find(function (c) { return c.name === data.customer; }) || suppliers.find(function (s) { return s.name === data.customer; });
+        entityPhone = entity ? entity.phone : "";
+      }
+      entityName = data.customer || "";
+      amount = data.amount;
+      date = data.date;
+      number = data.number;
+    }
+    
+    if (!entityPhone) { toast("رقم الهاتف غير مسجل في بطاقة الطرف الآخر", "error"); return; }
+    
+    // تنظيف الرقم بذكاء (إزالة أي رموز أو مسافات)
+    var phone = String(entityPhone).replace(/\D/g, "");
+    if (phone.startsWith("0")) phone = phone.substring(1);
+    if (!phone.startsWith("966")) phone = "966" + phone;
+    
+    var text = "*" + business.name + "*\n";
+    text += "مرحباً " + entityName + "،\n";
+    text += "تم إنشاء " + msgTitle + " رقم: *" + number + "*\n";
+    text += "التاريخ: " + date + "\n";
+    text += "المبلغ الإجمالي: *" + fmt(amount) + " ر.س*\n\n";
+    text += "شكراً لتعاملكم معنا!";
+    
+    var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+    
+    // فتح الواتساب
+    if (window.innerWidth <= 900) {
+      location.href = url; // في الجوال يفضل استخدام location.href
+    } else {
+      window.open(url, "_blank"); // في الكمبيوتر يفتح نافذة جديدة
+    }
+  }
     
     if (docType === "invoice") {
       var inv = invoices.find(function (x) { return x.id === docId; });
